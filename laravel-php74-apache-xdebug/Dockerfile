@@ -38,12 +38,3 @@ RUN a2enmod rewrite headers
 # install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# configure xdebug
-#RUN docker-php-ext-enable xdebug
-RUN echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.remote_port=9001" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.remote_connect_back=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.idekey=PHPSTORM" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.remote_host=192.168.1.40" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
