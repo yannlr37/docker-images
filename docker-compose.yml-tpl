@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  web:
+    image: lyrecreations/laravel:php74-apache
+    ports:
+      - "8001:80"
+    volumes:
+      - ~/Sites/laravel:/var/www/html
+    links:
+      - db:db
+
+  db:
+    image: mysql:5.7
+    volumes:
+      - ~/docker-cache/mysql:/var/lib/mysql
+      - ~/Sites/laravel/conf/laravel-vhost.conf:/etc/apache2/sites-available/000-default.conf
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+
+  adminer:
+    image: adminer:4.7.7-standalone
+    restart: always
+    ports:
+      - "8080:8080"
+    links:
+      - db:db
