@@ -17,6 +17,7 @@ RUN apt-get install -y \
     libreadline-dev \
     libfreetype6-dev \
     g++
+RUN docker-php-ext-install pdo_mysql
 RUN pecl install xdebug-2.9.6
 RUN echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902/xdebug.so" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
