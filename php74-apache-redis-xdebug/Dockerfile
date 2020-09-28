@@ -16,9 +16,7 @@ RUN apt-get install -y \
     libmcrypt-dev \
     libreadline-dev \
     libfreetype6-dev \
-    g++ \
-    nodejs \
-    npm
+    g++
 RUN docker-php-ext-install pdo_mysql
 RUN pecl install redis
 RUN docker-php-ext-enable redis
@@ -33,7 +31,7 @@ RUN echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902
     && echo "xdebug.remote_host=192.168.1.40" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # configure apache
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+ENV APACHE_DOCUMENT_ROOT=/var/www/html
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
