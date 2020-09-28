@@ -16,10 +16,12 @@ RUN apt-get install -y \
     libmcrypt-dev \
     libreadline-dev \
     libfreetype6-dev \
+    libxml2-dev \
     g++ \
     nodejs \
     npm
 RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install soap
 RUN pecl install xdebug-2.9.6
 RUN echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902/xdebug.so" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
@@ -31,7 +33,7 @@ RUN echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902
     && echo "xdebug.remote_host=192.168.1.40" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # configure apache
-ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+ENV APACHE_DOCUMENT_ROOT=/var/www/html
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
