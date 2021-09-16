@@ -29,7 +29,7 @@ RUN apt-get update \
 COPY --from=composer:1.10 /usr/bin/composer /usr/local/bin/composer
 
 # Récupération de l'entrypoint
-COPY entrypoint.sh /home/entrypoint.sh
+COPY tourainegenealogie/php/entrypoint.sh /home/entrypoint.sh
 WORKDIR /home
 RUN chmod +x /home/entrypoint.sh
 
