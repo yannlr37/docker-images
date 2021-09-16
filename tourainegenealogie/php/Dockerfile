@@ -15,13 +15,7 @@ RUN apt-get update \
 	&& docker-php-ext-install zip \
 	&& docker-php-ext-install gd \
 	&& pecl install xdebug-3.0.4 \
-    && docker-php-ext-enable xdebug \
-    && docker-php-ext-configure gd --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
-    && docker-php-ext-install ldap \
-    && apt-get purge -y --auto-remove libldap2-dev \
-	&& docker-php-source extract \
-	&& docker-php-source delete \
+    && docker-php-ext-enable xdebug
 
 	# Création des dossiers des logs et data
 	&& chown -R www-data:www-data /var/log
