@@ -15,7 +15,7 @@ RUN apt-get update \
 	&& docker-php-ext-install zip \
 	&& docker-php-ext-install gd \
 	&& pecl install xdebug-3.0.4 \
-    && docker-php-ext-enable xdebug
+    && docker-php-ext-enable xdebug \
 
 	# Création des dossiers des logs et data
 	&& chown -R www-data:www-data /var/log
