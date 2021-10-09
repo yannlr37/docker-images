@@ -20,8 +20,6 @@ RUN apt-get install -y \
     nodejs \
     npm
 RUN docker-php-ext-install pdo_mysql
-RUN pecl install redis
-RUN docker-php-ext-enable redis
 RUN pecl install xdebug-3.0.4
 RUN docker-php-ext-enable xdebug
 
