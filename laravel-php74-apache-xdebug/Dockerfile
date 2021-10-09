@@ -1,5 +1,5 @@
 FROM php:7.4-apache
-MAINTAINER LyreCreations <yannlarosa@gmail.com>
+MAINTAINER CrazyOwlCreations <webmaster.crazyowl@gmail.com>
 RUN apt-get update
 RUN apt-get install -y vim
 RUN apt-get install -y git
@@ -22,15 +22,8 @@ RUN apt-get install -y \
 RUN docker-php-ext-install pdo_mysql
 RUN pecl install redis
 RUN docker-php-ext-enable redis
-RUN pecl install xdebug-2.9.6
-RUN echo "zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902/xdebug.so" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.remote_port=9001" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.remote_connect_back=0" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.idekey=PHPSTORM" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && echo "xdebug.remote_host=192.168.1.40" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN pecl install xdebug-3.0.4
+RUN docker-php-ext-enable xdebug
 
 # configure apache
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
